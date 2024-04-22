@@ -12,8 +12,6 @@ describe("test check", () => {
   beforeAll(async () => {
     server = fork(`${__dirname}/e2e.server.js`);
     await new Promise((resolve, reject) => {
-        console.log('Смотрим сервер коннект ', server.connected)
-        console.log(server)
         if(server.connected) {
             process.send('ok');
             resolve()
