@@ -27,6 +27,7 @@ describe("test check", () => {
     });
 
     page = await browser.newPage();
+    await page.goto(baseUrl);
   });
 
   afterAll(async () => {
@@ -35,14 +36,12 @@ describe("test check", () => {
   });
 
   test("тест на первый клик, елемент есть на странице", async () => {
-    await page.goto(baseUrl);
     const img = await page.$(".img");
     await img.click();
     expect(await page.waitForSelector(".tip-active")).toBeTruthy();
   });
 
   test("тест на второй клик, елемента нет на странице", async () => {
-    await page.goto(baseUrl);
     const img = await page.$(".img");
     await img.click();
     await img.click();
@@ -50,7 +49,6 @@ describe("test check", () => {
   });
 
   test("тест проверяет текст элемента", async () => {
-    await page.goto(baseUrl);
     const img = await page.$(".img");
     await img.click();
     expect(await page.$eval(".tip", (elem) => elem.textContent)).toBe(
