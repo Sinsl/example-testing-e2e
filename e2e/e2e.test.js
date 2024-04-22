@@ -14,18 +14,23 @@ describe("test check", () => {
     await new Promise((resolve, reject) => {
         console.log('Смотрим сервер коннект ', server.connected)
         console.log(server)
-      server.connected ? resolve() : reject();
+        if(server.connected) {
+            process.send('ok');
+            resolve()
+        } else {
+            reject();
+        }
     });
 
     browser = await puppetteer.launch({
-      headless: false, // show gui
-      slowMo: 200,
-      devtools: false, // show devTools
-      // args: [`--window-size=1000,1000`],
-      defaultViewport: {
-        width: 1000,
-        height: 1000,
-      },
+    //   headless: false, // show gui
+    //   slowMo: 200,
+    //   devtools: false, // show devTools
+    //   // args: [`--window-size=1000,1000`],
+    //   defaultViewport: {
+    //     width: 1000,
+    //     height: 1000,
+    //   },
     });
 
     page = await browser.newPage();
