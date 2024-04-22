@@ -1,0 +1,15 @@
+body {
+    color: #999;
+}
+.tip {
+    border: 1px solid #999;
+    margin: 50px;
+    padding: 30px;
+    width: 300px;
+    text-align: center;
+    font-size: 20px;
+    display: none;
+}
+.tip-active {
+    display: block;
+}
