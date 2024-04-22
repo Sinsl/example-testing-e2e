@@ -16,14 +16,14 @@ describe("test check", () => {
     );
 
     browser = await puppetteer.launch({
-      headless: false, // show gui
-      slowMo: 200,
-      devtools: false, // show devTools
-      // args: [`--window-size=1000,1000`],
-      defaultViewport: {
-        width: 1000,
-        height: 1000,
-      },
+    //   headless: false, // show gui
+    //   slowMo: 200,
+    //   devtools: false, // show devTools
+    //   // args: [`--window-size=1000,1000`],
+    //   defaultViewport: {
+    //     width: 1000,
+    //     height: 1000,
+    //   },
     });
 
     page = await browser.newPage();
@@ -46,7 +46,7 @@ describe("test check", () => {
     await img.click();
     expect(await page.$(".tip-active")).toBeNull();
   });
-  
+
   test("тест проверяет текст элемента", async () => {
     const img = await page.$(".img");
     await img.click();
