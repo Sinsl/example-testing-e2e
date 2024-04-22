@@ -11,23 +11,25 @@ describe("test check", () => {
 
   beforeAll(async () => {
     server = fork(`${__dirname}/e2e.server.js`);
-    await new Promise((resolve, reject) =>
-      server.connected ? resolve() : reject(),
-    );
+    await new Promise((resolve, reject) => {
+        console.log('Смотрим сервер коннект ', server.connected)
+        console.log(server)
+      server.connected ? resolve() : reject();
+    });
 
     browser = await puppetteer.launch({
-    //   headless: false, // show gui
-    //   slowMo: 200,
-    //   devtools: false, // show devTools
-    //   // args: [`--window-size=1000,1000`],
-    //   defaultViewport: {
-    //     width: 1000,
-    //     height: 1000,
-    //   },
+      headless: false, // show gui
+      slowMo: 200,
+      devtools: false, // show devTools
+      // args: [`--window-size=1000,1000`],
+      defaultViewport: {
+        width: 1000,
+        height: 1000,
+      },
     });
 
     page = await browser.newPage();
-    await page.goto(baseUrl);
+    
   });
 
   afterAll(async () => {
@@ -36,12 +38,14 @@ describe("test check", () => {
   });
 
   test("тест на первый клик, елемент есть на странице", async () => {
+    await page.goto(baseUrl);
     const img = await page.$(".img");
     await img.click();
     expect(await page.waitForSelector(".tip-active")).toBeTruthy();
   });
 
   test("тест на второй клик, елемента нет на странице", async () => {
+    await page.goto(baseUrl);
     const img = await page.$(".img");
     await img.click();
     await img.click();
@@ -49,6 +53,7 @@ describe("test check", () => {
   });
 
   test("тест проверяет текст элемента", async () => {
+    await page.goto(baseUrl);
     const img = await page.$(".img");
     await img.click();
     expect(await page.$eval(".tip", (elem) => elem.textContent)).toBe(
