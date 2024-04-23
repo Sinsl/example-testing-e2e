@@ -1,26 +1,27 @@
-image: Ubuntu2204  # образ для сборки
+image: Ubuntu2204
 
-stack: node 20  # окружение
+stack: node 20
 
 branches:
   only:
-    - master  # ветка git
+    - master
     - main
 
-cache: off  # кеширование
+cache: off
 
 install:
-  - yarn  # команда установки зависимостей
+  - yarn
 
-build: off  # отключаем встроенную в appveyor систему сборки
+build: off
 
 build_script:
-  - yarn build   # команда сборки
+  - yarn build 
 
 test_script:
-  - yarn lint && yarn e2e  # скрипт тестирования
+  - yarn lint
+  - yarn e2e
 
-deploy_script:  # скрипт развёртывания
+deploy_script:
   - git config --global credential.helper store
   - git config --global user.name AppVeyor
   - git config --global user.email ci@appveyor.com
