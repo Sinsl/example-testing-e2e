@@ -21,9 +21,9 @@ test_script:
   - yarn lint
   - yarn e2e
 
-deploy_script:
-  - git config --global credential.helper store
-  - git config --global user.name AppVeyor
-  - git config --global user.email ci@appveyor.com
-  - echo "https://$GITHUB_TOKEN:x-oauth-basic@github.com" > "$HOME/.git-credentials"
-  - npx gh-pages -d dist -u "appveyor-bot <ci@appveyor>"
+# deploy_script:
+#   - git config --global credential.helper store
+#   - git config --global user.name AppVeyor
+#   - git config --global user.email ci@appveyor.com
+#   - echo "https://$GITHUB_TOKEN:x-oauth-basic@github.com" > "$HOME/.git-credentials"
+#   - npx gh-pages -d dist -u "appveyor-bot <ci@appveyor>"
